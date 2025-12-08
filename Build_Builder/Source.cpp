@@ -64,3 +64,6 @@ double takeDamage(double attackDamage, double armor, double health)
 	delete(randomNum);
 	return health;
 }
+
+
+// Doing git stuff

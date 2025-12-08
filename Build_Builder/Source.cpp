@@ -1,4 +1,6 @@
 #include <iostream>
+#include <random>
+#include <cassert>
 
 //Jay Mills
 //Build-Builder Source
@@ -23,7 +25,7 @@
 * Need to make the player class have all sorts of stats and maybe array for inventory.
 * These should be selected depending on how well your higher stats are;
 *	If your strength is high, you can roll for a higher damage hit or AOE type attack
-*	If your Attack speed it high, you might be able to get a double hit
+*	If your Attack speed is high, you might be able to get a double hit
 * 
 * Random Ideas
 * If your health is below a certain percentage, you check to see if you have a health potion, if not, you keep attacking
@@ -31,10 +33,34 @@
 
 */
 
-
+double takeDamage(double /*attackDmg*/, double/*armor*/, double/*health*/);
 
 int main()
 {
+	//HK
+	int level = 4;
+	double health = 60.0;
+	double armor = 2.5;
+	double attackDamage = level * 1.2; //Level * weaponStats
 
+	std::cout << "Health: " << health << std::endl;
+	std::cout << "Health: " << takeDamage(attackDamage, armor, health);
+	
+	//Maths testing
+
+	
 	system("pause");
+}
+
+double takeDamage(double attackDamage, double armor, double health)
+{	
+	srand(time(NULL));
+	double* randomNum = new double(rand() % 60);
+	assert(randomNum);
+
+	double attack = (attackDamage / armor) * (*randomNum / armor);
+	health = health - attack;
+
+	delete(randomNum);
+	return health;
 }

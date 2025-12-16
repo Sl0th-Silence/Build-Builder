@@ -3,10 +3,14 @@
 // This will be the parent that sub classes derive from
 // 
 
+//Globals
+const int SIZE = 6;
+
 class PlayerBase
 {
 private:
 	std::string class_name;
+	std::string classes[SIZE] = {"Unarmed", "1-Handed", "2-Handed", "Ranged", "Mage", "Tank"};
 protected:
 	//Base Information
 	std::string name;
@@ -25,10 +29,10 @@ protected:
 	double
 		//Base stats
 		//Health Defence
-		mana_points, //Amount of Mana
 		health_points, //Amount of Health
 		armor, //Rolls for amount of damage negated
 		evasion_chance, //Rolls for change to dodge attack and negate 100% of damage
+		mana_points, //Amount of Mana
 
 		//Attack Offence
 		base_attack, //Attack power based off level only
@@ -58,19 +62,44 @@ protected:
 		
 		
 	//========== End of doubles =================================================================================//
-
-	//After all of the base vars are set, we can add the methods
+public:
 	//Constructors to set chars base
-	PlayerBase();
+	PlayerBase(); //Default
+	PlayerBase(std::string/*Class name*/); //Non-Default
 
 	//Getters
-
+	int getCharLevel() const { return char_level; }
+	std::string getCharClass() const { return class_name; }
+	
 	//Setters
+	void setLevelStats(int/*Strength*/,
+		int/*Intelligence*/,
+		int/*Dexterity*/,
+		int/*Vitality*/,
+		int/*Wisdom*/);
+
+	void setBaseStats(double/*health_points*/,
+		double/*armor*/,
+		double/*evasionChance*/,
+		double/*ManaPoints*/);
+
+	void setOffensive(double/*base_attack*/,
+		double/*attack_speed*/,
+		double/*attack_precision*/);
+
+	void setMagic(double/*fire*/,
+		double/*cold*/,
+		double/*lightning*/,
+		double/*blood*/,
+		double/*dark*/);
+	
+	void setResistance(double/*fireRES*/,
+		double/*coldRES*/,
+		double/*lightningRES*/,
+		double/*bloodRES*/,
+		double/*darkRES*/);
 
 	//Methods
-
-
-public:
 
 };
 

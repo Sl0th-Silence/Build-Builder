@@ -2,6 +2,8 @@
 #include <random>
 #include <cassert>
 
+#include "PlayerBase.h"
+
 //Jay Mills
 //Build-Builder Source
 /*
@@ -33,36 +35,17 @@
 
 */
 
-double takeDamage(double /*attackDmg*/, double/*armor*/, double/*health*/);
-
 int main()
 {
-	//HK
-	int level = 4;
-	double health = 60.0;
-	double armor = 2.5;
-	double attackDamage = level * 1.2; //Level * weaponStats
-
-	std::cout << "Health: " << health << std::endl;
-	std::cout << "Health: " << takeDamage(attackDamage, armor, health);
-	
+	//PlayerBase* playerOne = new PlayerBase;
 	//Maths testing
+	PlayerBase* playerTwo = new PlayerBase("Mage");
+	assert(playerTwo);
 
+	std::cout << "Char class: " << playerTwo->getCharClass() << std::endl;
 	
+	delete(playerTwo);
 	system("pause");
-}
-
-double takeDamage(double attackDamage, double armor, double health)
-{	
-	srand(time(NULL));
-	double* randomNum = new double(rand() % 60);
-	assert(randomNum);
-
-	double attack = (attackDamage / armor) * (*randomNum / armor);
-	health = health - attack;
-
-	delete(randomNum);
-	return health;
 }
 
 

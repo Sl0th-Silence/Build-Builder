@@ -17,7 +17,7 @@ protected:
 	//Level stats
 		strength,
 		intelligence,
-		dexterity,
+		dexterity, //Strength with dex based weapons increases
 		vitality, //HealthPoints
 		wisdom; //ManaPool
 

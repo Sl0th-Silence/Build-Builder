@@ -12,7 +12,7 @@
 * Once I make the base stats, we can use those to generate random enemies
 * The player will be able to create his own char via constructor or prompts.
 * Lets start with constructor first
-* 
+*
 * TODO
 * ========== CLASSES ===========
 * - Create the player class
@@ -23,12 +23,12 @@
 * - Buffs (Buff to defence or Attack, buff to evasion)
 * - Items (Potions(Health, Mana), Elixers(Buff, Defence))
 * - Attack Speed (Accuracy, Chance To Dodge(evasion))
-* 
+*
 * Need to make the player class have all sorts of stats and maybe array for inventory.
 * These should be selected depending on how well your higher stats are;
 *	If your strength is high, you can roll for a higher damage hit or AOE type attack
 *	If your Attack speed is high, you might be able to get a double hit
-* 
+*
 * Random Ideas
 * If your health is below a certain percentage, you check to see if you have a health potion, if not, you keep attacking
 * Same with the enemies, they can get random items too
@@ -39,11 +39,11 @@ int main()
 {
 	//PlayerBase* playerOne = new PlayerBase;
 	//Maths testing
-	PlayerBase* playerTwo = new PlayerBase("Mage");
+	PlayerBase* playerTwo = new PlayerBase("mage"); //works upper and lower case
 	assert(playerTwo);
 
 	std::cout << "Char class: " << playerTwo->getCharClass() << std::endl;
-	
+
 	delete(playerTwo);
 	system("pause");
 }

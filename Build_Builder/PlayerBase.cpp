@@ -1,11 +1,14 @@
 #include "PlayerBase.h"
 #include <iomanip>
+#include <cctype>
+#include <iostream>
 
 
 //Main Class
 //Default Constructor
 PlayerBase::PlayerBase()
 {
+
 	int choice;
 	std::cout << "Welcome! Please select a class:\n" <<
 		"1. Unarmed\n2. 1-Handed Combat\n3. 2-Handed Combat\n" <<
@@ -19,45 +22,36 @@ PlayerBase::PlayerBase()
 		std::cout << "Please enter a valid option (1-6)";
 		std::cin >> choice;
 	}
-	//After validate
-	switch (choice)
-	{
-		case 1:
-		{
-			//Unarmed
-			setLevelStats(6, 1, 3, 7, 1);
-			break;
-		}
-		case 2:
-		{
-			//1 handed
-			break;
-		}
-		default:
-		{
-			//Also unarmed. If no choice is made then you are unarmed
-			break;
-		}
-	}
+
+	switchOnType(choice);
 }
 
 //Non-default Constructor
 PlayerBase::PlayerBase(std::string init_class)
 {
+	//Check input and capitalize first letter
+	if (!init_class.empty())
+	{
+		init_class[0] = std::toupper(static_cast<unsigned char>(init_class[0]));
+	}
+
+	//Check to see which class was chosen
 	for (int ctr = 0; ctr < SIZE; ctr++)
 	{
 		if (init_class == classes[ctr])
 		{
 			class_name = classes[ctr]; //Set to that class if exists
-			break;
-		}
-		else
-		{
-			class_name = classes[0]; //Set to unarmed
+			return;
 		}
 	}
-	
+	//If it doesn't return, then none matched
+	class_name = classes[0]; //Set to unarmed
+
+	//Next set basic stats for each char
+
 }
+
+// ========================== INITIALIZATION OF THE CLASS ================================== //
 
 void PlayerBase::setLevelStats(int init_strength,
 	int init_intelligence,
@@ -116,4 +110,34 @@ void PlayerBase::setResistance(double init_fireRes,
 	base_lightning_resistance = init_lightningRes;
 	base_blood_resistance = init_bloodRes;
 	base_dark_resistance = init_darkRes;
+}
+
+// ====================== GENERAL METHODS ======================== //
+
+void PlayerBase::switchOnType(int init_choice)
+{
+	//After validate
+	switch (init_choice)
+	{
+	case 1:
+	{
+		//Unarmed
+		setLevelStats(6, 1, 3, 7, 1);
+		setBaseStats(5.0, 7.0, 4.0, 2.5);
+		setOffensive(2.0, 3.0, 1.4);
+		setMagic(0.0, 0.0, 0.0, 0.0, 0.0);
+		setResistance(0.5, 0.5, 0.5, 0.5, 0.5);
+		break;
+	}
+	default:
+	{
+		//Unarmed
+		setLevelStats(6, 1, 3, 7, 1);
+		setBaseStats(5.0, 7.0, 4.0, 2.5);
+		setOffensive(2.0, 3.0, 1.4);
+		setMagic(0.0, 0.0, 0.0, 0.0, 0.0);
+		setResistance(0.5, 0.5, 0.5, 0.5, 0.5);
+		break;
+	}
+	}
 }
